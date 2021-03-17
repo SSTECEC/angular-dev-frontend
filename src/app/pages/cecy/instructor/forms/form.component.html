@@ -1,0 +1,42 @@
+<h1>Registrar nuevo Curso:</h1>
+<div class="card card-w-title">
+        <div class="ui-helper-clearfix">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-3">
+                        <h1>
+                            <input  type="text" pInputText placeholder="Nombre del Curso">
+                        </h1>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <h1>
+                            <input   type="text" pInputText placeholder="Codigo">
+                        </h1>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <p-dropdown id="carrers" [options]="carrers" [(ngModel)]="carrer"></p-dropdown>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <p-dropdown id="academic_periods" [options]="academic_periods" [(ngModel)]="academic_period"></p-dropdown>
+                    </div>
+                </div>
+        </div>
+    <div>
+        <p-tabView>
+            <p-tabPanel header="Datos Generales" leftIcon="pi pi-paperclip">
+                <app-datos-curso></app-datos-curso>
+            </p-tabPanel>
+            <p-tabPanel header="Diseño Curricular" leftIcon="pi pi-paperclip">
+                <app-diseno-curricular></app-diseno-curricular>
+            </p-tabPanel>
+            <p-tabPanel header="Evaluacion" leftIcon="pi pi-paperclip">
+                <app-estrategias></app-estrategias>
+            </p-tabPanel>
+            <p-tabPanel header="Entorno de aprendizaje" leftIcon="pi pi-paperclip">
+                <app-entorno-aprendizaje></app-entorno-aprendizaje>
+            </p-tabPanel>
+           <p-tabPanel [headerStyle]="{'background-color': 'red'}" header="Observaciones">
+                <app-observaciones></app-observaciones>
+            </p-tabPanel>
+        </p-tabView>    
+    </div>
+</div>

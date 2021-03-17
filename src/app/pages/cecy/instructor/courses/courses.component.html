@@ -1,4 +1,4 @@
-<h2>Cursos Propuestos:</h2>
+<h1>Cursos Propuestos:</h1>
 <p-dataView #dv [value]="carsLarge" [paginator]="true" [rows]="10" paginatorPosition="both" filterBy="brand">
     <p-header>
         <div class="ui-helper-clearfix">
@@ -13,9 +13,9 @@
                             icon="pi pi-plus-circle" iconPos="right"></button>
                     </div>
                 </div>
-                <!-- <div class="p-col-12 p-md-6" style="text-align:right">
+                <div class="p-col-12 p-md-6" style="text-align:right">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-                </div> -->
+                </div>
             </div>
         </div>
     </p-header>
@@ -71,3 +71,17 @@
         </div>
     </ng-template>
 </p-dataView>
+
+<table>
+    <thead>
+        <th>id</th>
+        <th>Costo</th>
+        <th>Resumen</th>
+    </thead>
+    <tbody *ngFor="let course of courses">
+        <th>{{course.id}}</th>
+        <th>{{course.cost}}</th>
+        <th>{{course.summary}}</th>
+    </tbody>
+
+</table>

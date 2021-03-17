@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
-import {CecyRoutes} from './cecy.routing';
 import {DataViewModule} from 'primeng/dataview';
 import {PanelModule} from 'primeng/panel';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {InputTextareaModule} from 'primeng/inputtextarea';
@@ -17,10 +17,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {FileUploadModule} from 'primeng/fileupload';
 import {TableModule} from 'primeng/table';
 import {StepsModule} from 'primeng/steps';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-
 import {ToastModule} from 'primeng/toast';
 import {SliderModule} from 'primeng/slider';
 import {ContextMenuModule} from 'primeng/contextmenu';
@@ -28,27 +26,32 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import {ToolbarModule} from 'primeng/toolbar';
 import {RatingModule} from 'primeng/rating';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {CheckboxModule} from 'primeng/checkbox';
 
-
-//SERVICIOS
-import { CecyService } from '../../services/cecy/cecy.service'
 
 import { from } from 'rxjs';
-import { InstructorComponent } from './instructor/instructor.component';
-import { CoursesComponent } from './instructor/courses/courses.component';
+//COMPONENTES
+
+import { FormRoutes } from './form.routing';
+import { FormsComponent } from './form.component';
+import { DatosCursoComponent } from './datos-curso/datos-curso.component';
+import { DisenoCurricularComponent } from './diseno-curricular/diseno-curricular.component';
+import { ObservacionesComponent } from './observaciones/observaciones.component';
+import { EstrategiasComponent } from './estrategias/estrategias.component';
+import { EntornoAprendizajeComponent } from './entorno-aprendizaje/entorno-aprendizaje.component'
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forChild(CecyRoutes),
-        DataViewModule,
-        ToastModule,
-        ContextMenuModule,
-        ProgressBarModule,
-        ToolbarModule,
+        RouterModule.forChild(FormRoutes),
+        DataViewModule,ProgressBarModule,
         RatingModule,
         ConfirmDialogModule,
+        ToolbarModule,
         SliderModule,
+        ContextMenuModule,
+        CheckboxModule,
+        ToastModule,
         PanelModule,
         InputTextModule,
         ButtonModule,
@@ -64,15 +67,15 @@ import { CoursesComponent } from './instructor/courses/courses.component';
         TableModule,
         FileUploadModule,
         StepsModule,
-        ReactiveFormsModule,
         DialogModule,
-        AutoCompleteModule
-
+        AutoCompleteModule,
+        ReactiveFormsModule,
     ],
-    declarations: [InstructorComponent, CoursesComponent],
+    declarations: [FormsComponent, DatosCursoComponent, 
+        DisenoCurricularComponent,ObservacionesComponent, EstrategiasComponent, EntornoAprendizajeComponent
+    ],
     providers: [
-       CecyService,
     ],
 })
-export class CecyModule {
+export class FormModule {
 }

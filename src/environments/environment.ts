@@ -6,6 +6,7 @@
 // export const URL = 'http://192.168.0.184:8000/';
 export const URL = 'http://127.0.0.1:8000/';
 
+
 export const environment = {
     production: false,
     STORAGE_URL: URL + 'storage/',
@@ -16,6 +17,7 @@ export const environment = {
     API_URL_WEB: URL + 'api/web/',
     API_URL_TEACHER_EVAL: URL + 'api/teacher_eval/',
     API_URL_COMMUNITY: URL + 'api/community/',
+    API_URL_COMBOS_CECY: 'http://127.0.0.1:8000/api/cecy/',
 
     CLIENT_ID: '1',
     CLIENT_SECRET: '32J6VCpAppxAfTWrzNBZxvN8AW2UEj7xtUU1PrRx',
