@@ -9,7 +9,7 @@
             </div>
             <div class="p-col-2 p-sm-6">
                 <p-autoComplete  formControlName="aerea" [suggestions]="aereas"
-                (completeMethod)="filter($event)" [size]="102" [minLength]="1" [dropdown]="true">
+                (completeMethod)="filter($event)" [size]="75" [minLength]="1" [dropdown]="true">
                 <ng-template let-aerea pTemplate="item" >
                     <div class="ui-helper-clearfix">
                         <div style="font-size:18px;margin:10px 10px 0 0">{{aerea}}</div>
@@ -19,7 +19,7 @@
             </div>
             <div class="p-col-2 p-sm-6">
                 <p-autoComplete formControlName="specialty" [suggestions]="specialties"
-                (completeMethod)="filter($event)" [size]="102" [minLength]="1" [dropdown]="true">
+                (completeMethod)="filter($event)" [size]="75" [minLength]="1" [dropdown]="true">
                 <ng-template let-specialty pTemplate="item" >
                     <div class="ui-helper-clearfix">
                         <div style="font-size:18px;margin:10px 10px 0 0">{{specialty}}</div>
@@ -37,7 +37,7 @@
                         <label for="requisitos">Requisitos:</label>
                     </div>
                     <div class="p-col-12 p-md-12">
-                        <input formControlName="requisito" type="text" pInputText placeholder="requisitos">
+                        <input formControlName="requisito" style="width: 75%;" type="text" pInputText placeholder="Ingrese un requisito">
                     </div>
                 </div>
                 <div class="p-col-12 p-md-3">
@@ -51,12 +51,12 @@
                         dataKey="vin" [style]="{'margin-bottom':'20px'}" [(selection)]="selectedCar3"
                         [responsive]="true">
                         <ng-template pTemplate="caption">
-                            Requisito 
+                            Listado de Requisitos
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                                    {{col.header}}
+                                    Alinear
                                     <p-sortIcon [field]="col.field"></p-sortIcon>
                                 </th>
                             </tr>
@@ -64,7 +64,7 @@
                         <ng-template pTemplate="body" let-rowData let-columns="columns">
                             <tr [pSelectableRow]="rowData">
                                 <td *ngFor="let col of columns">
-                                    <span class="ui-column-title">{{col.header}}</span>
+                                    <!--<span class="ui-column-title">{{col.header}}</span>-->
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>
@@ -82,7 +82,7 @@
                         <label for="principal">Temas principales:</label>
                     </div>
                     <div class="p-col-12 p-md-12">
-                        <input formControlName="principal" type="text" pInputText placeholder="temas principales">
+                        <input formControlName="principal" style="width: 75%;" type="text" pInputText placeholder="Ingrese un tema principal">
                     </div>
                 </div>
                 <div class="p-col-12 p-md-3">
@@ -96,12 +96,12 @@
                         dataKey="vin" [style]="{'margin-bottom':'20px'}" [(selection)]="selectedCar3"
                         [responsive]="true">
                         <ng-template pTemplate="caption">
-                            Tema Principal 
+                            Listado de Temas Principales 
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                                    {{col.header}}
+                                    Alinear
                                     <p-sortIcon [field]="col.field"></p-sortIcon>
                                 </th>
                             </tr>
@@ -109,7 +109,7 @@
                         <ng-template pTemplate="body" let-rowData let-columns="columns">
                             <tr [pSelectableRow]="rowData">
                                 <td *ngFor="let col of columns">
-                                    <span class="ui-column-title">{{col.header}}</span>
+                                     <!--<span class="ui-column-title">{{col.header}}</span>-->
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>
@@ -127,7 +127,7 @@
                         <label for="secundario">Temas Secundarios:</label>
                     </div>
                     <div class="p-col-12 p-md-12">
-                        <input formControlName="secundario" type="text" pInputText placeholder="temas secundarios">
+                        <input formControlName="secundario" style="width: 75%;" type="text" pInputText placeholder="Ingrese un tema secundario">
                     </div>
                 </div>
                 <div class="p-col-12 p-md-3">
@@ -141,12 +141,12 @@
                         dataKey="vin" [style]="{'margin-bottom':'20px'}" [(selection)]="selectedCar3"
                         [responsive]="true">
                         <ng-template pTemplate="caption">
-                            Tema Secundarios 
+                            Listado de Temas Secundarios 
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                                    {{col.header}}
+                                    Alinear
                                     <p-sortIcon [field]="col.field"></p-sortIcon>
                                 </th>
                             </tr>
@@ -154,7 +154,7 @@
                         <ng-template pTemplate="body" let-rowData let-columns="columns">
                             <tr [pSelectableRow]="rowData">
                                 <td *ngFor="let col of columns">
-                                    <span class="ui-column-title">{{col.header}}</span>
+                                    <!--<span class="ui-column-title">{{col.header}}</span>-->
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>
@@ -172,7 +172,7 @@
                         <label for="transversal">Temas transversales:</label>
                     </div>
                     <div class="p-col-12 p-md-12">
-                        <input formControlName="transversal" type="text" pInputText placeholder="temas Transversales">
+                        <input formControlName="transversal" style="width: 75%;" type="text" pInputText placeholder="Ingrese un tema transversal">
                     </div>
                 </div>
                 <div class="p-col-12 p-md-3">
@@ -186,12 +186,12 @@
                         dataKey="vin" [style]="{'margin-bottom':'20px'}" [(selection)]="selectedCar3"
                         [responsive]="true">
                         <ng-template pTemplate="caption">
-                            Tema transversales 
+                            Listado de Temas transversales 
                         </ng-template>
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                                    {{col.header}}
+                                    Alinear
                                     <p-sortIcon [field]="col.field"></p-sortIcon>
                                 </th>
                             </tr>
@@ -199,7 +199,7 @@
                         <ng-template pTemplate="body" let-rowData let-columns="columns">
                             <tr [pSelectableRow]="rowData">
                                 <td *ngFor="let col of columns">
-                                    <span class="ui-column-title">{{col.header}}</span>
+                                    <!--<span class="ui-column-title">{{col.header}}</span>-->
                                     {{rowData[col.field]}}
                                 </td>
                             </tr>

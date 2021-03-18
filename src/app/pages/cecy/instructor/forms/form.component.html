@@ -4,18 +4,18 @@
                 <div class="p-grid">
                     <div class="p-col-12 p-md-3">
                         <h1>
-                            <input  type="text" pInputText placeholder="Nombre del Curso">
+                            <input type="text" style="width: 70%;" pInputText placeholder="Nombre del Curso">
                         </h1>
                     </div>
                     <div class="p-col-12 p-md-3">
                         <h1>
-                            <input   type="text" pInputText placeholder="Codigo">
+                            <input type="text" style="width: 70%;" pInputText placeholder="Codigo">
                         </h1>
                     </div>
-                    <div class="p-col-12 p-md-3">
+                    <div class="p-col-12 p-md-3" style="margin-top: 1%">
                         <p-dropdown id="carrers" [options]="carrers" [(ngModel)]="carrer"></p-dropdown>
                     </div>
-                    <div class="p-col-12 p-md-3">
+                    <div class="p-col-12 p-md-3" style="margin-top: 1%">
                         <p-dropdown id="academic_periods" [options]="academic_periods" [(ngModel)]="academic_period"></p-dropdown>
                     </div>
                 </div>
@@ -34,9 +34,9 @@
             <p-tabPanel header="Entorno de aprendizaje" leftIcon="pi pi-paperclip">
                 <app-entorno-aprendizaje></app-entorno-aprendizaje>
             </p-tabPanel>
-           <p-tabPanel [headerStyle]="{'background-color': 'red'}" header="Observaciones">
+            <p-tabPanel header="Observaciones" leftIcon="pi pi-paperclip">
                 <app-observaciones></app-observaciones>
-            </p-tabPanel>
+            </p-tabPanel>        
         </p-tabView>    
     </div>
 </div>

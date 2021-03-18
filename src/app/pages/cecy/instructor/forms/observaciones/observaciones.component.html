@@ -1,19 +1,24 @@
-<div class="container">
-    <form [formGroup]="form" novalidate>
-        <div class="p-grid">
+<div class="p-grid ui-fluid">
+    <form [formGroup]="form_diseno"  class="p-grid" novalidate>
+        <div class="p-grid ui-fluid">
             <div class="p-col-12">
-                <div class="card">
-                    <div class="p-grid ui-fluid">
-                        <h1>Observaciones para la aceptacion de documentos de vinculacion</h1>
-                        <div class="p-sm-12">
-                            <textarea formControlName="observaciones" [disabled]="observacionEditable" [rows]="5"
-                                [cols]="30" pInputTextarea
-                                placeholder="Ecriba aqui todas las observaciones a corregir para la aprobaciones del proyecto de vinculación"
-                                autoResize="autoResize"></textarea>
-                        </div>
-                    </div>
-                </div>
+                <label>Observaciones para la aceptación de documentos de vinculación:</label>
             </div>
+            <div class="p-col-2 p-sm-4">
+                <textarea formControlName="observaciones" [disabled]="observacionEditable" 
+                [rows]="5" [cols]="100" pInputTextarea
+                placeholder="Escriba todas las observaciones a corregir para la aprobación del proyecto de vinculación"
+                autoResize="autoResize"></textarea>
+            </div>               
         </div>
+        <div class="p-col-2 p-sm-4">
+            <button pButton type="" [disabled]="" label="Finalizar"
+                icon="pi pi-check"></button>
+        </div>  
     </form>
+    
 </div>
+
+
+
+
