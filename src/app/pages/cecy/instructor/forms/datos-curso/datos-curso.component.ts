@@ -6,7 +6,6 @@ import {Necesidad} from 'src/app/models/cecy/models.index'
 import { Curso } from 'src/app/models/cecy/curso';
 
 
-
 @Component({
   selector: 'app-datos-curso',
   templateUrl: './datos-curso.component.html'
@@ -17,11 +16,12 @@ export class DatosCursoComponent implements OnInit {
   form_necesidades: FormGroup;
   // tabla necesidad
   tabla_necesidades: any[];
-  necesidades:Necesidad []= [];
+  necesidades:Necesidad [] = [];
   necesidad: Necesidad;
    //campos
   participant_types : SelectItem[];
   modalities: SelectItem[];
+  carrers: SelectItem[];
   days: SelectItem[];
   course_types: SelectItem[];
   url_combo = "combo";
@@ -38,12 +38,14 @@ export class DatosCursoComponent implements OnInit {
     this.tabla_necesidad();
     
   }
+
   private buildForm() {
     this.form = this.formBuilder.group({
       cost: ['',[Validators.required]],
       free: ['',[Validators.required]],
       capacity: ['',[Validators.required]],
       modality: ['',[Validators.required]],
+      career: ['',[Validators.required]],
       duration: ['',[Validators.required]],
       local_proposal: ['',[Validators.required]],
       summary: ['',[Validators.required]],
@@ -56,15 +58,23 @@ export class DatosCursoComponent implements OnInit {
     });
   }
 
-  filter(event) {
+  filter(event: { query: string; }) {
     this.cecyService.getCombos(this.url_combo).subscribe(
       response => {
+
+        console.log('Respuesta',response);
+
+        this.carrers = [];
+        const carrers = response['career'];
+
         this.days = [];
         this.modalities = [];
+        
         this.course_types=[];
         this.participant_types=[];
         const days = response['day'];
         const modalities = response['modality'];
+        
         const course_types = response['course_type'];
         const participant_types = response['participant_type'];
         for (const item of days) {
@@ -78,6 +88,14 @@ export class DatosCursoComponent implements OnInit {
           if (modality.toLowerCase().indexOf(event.query.toLowerCase()) === 0) {
             this.modalities.push(modality);
             console.log(modality);
+            
+          }
+        }
+        for (const item of carrers) {
+          const carr = item.name;
+          if (carr.toLowerCase().indexOf(event.query.toLowerCase()) === 0) {
+            this.carrers.push(carr);
+            console.log(carr);
             
           }
         }

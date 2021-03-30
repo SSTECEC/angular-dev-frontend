@@ -1,3 +1,3 @@
 export class Necesidad {
-    necesidades_cursos;
+    necesidades_cursos : string;
 }

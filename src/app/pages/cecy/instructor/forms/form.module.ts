@@ -39,6 +39,9 @@ import { DisenoCurricularComponent } from './diseno-curricular/diseno-curricular
 import { ObservacionesComponent } from './observaciones/observaciones.component';
 import { EstrategiasComponent } from './estrategias/estrategias.component';
 import { EntornoAprendizajeComponent } from './entorno-aprendizaje/entorno-aprendizaje.component'
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -70,12 +73,13 @@ import { EntornoAprendizajeComponent } from './entorno-aprendizaje/entorno-apren
         DialogModule,
         AutoCompleteModule,
         ReactiveFormsModule,
+        MessagesModule,
+        MessageModule
     ],
     declarations: [FormsComponent, DatosCursoComponent, 
         DisenoCurricularComponent,ObservacionesComponent, EstrategiasComponent, EntornoAprendizajeComponent
     ],
-    providers: [
-    ],
+    providers: [MessageService],
 })
 export class FormModule {
 }

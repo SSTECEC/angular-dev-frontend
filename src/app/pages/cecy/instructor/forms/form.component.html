@@ -1,42 +1,534 @@
-<h1>Registrar nuevo Curso:</h1>
+<h1>Registrar Curso:</h1>
 <div class="card card-w-title">
-        <div class="ui-helper-clearfix">
-                <div class="p-grid">
-                    <div class="p-col-12 p-md-3">
-                        <h1>
-                            <input type="text" style="width: 70%;" pInputText placeholder="Nombre del Curso">
-                        </h1>
-                    </div>
-                    <div class="p-col-12 p-md-3">
-                        <h1>
-                            <input type="text" style="width: 70%;" pInputText placeholder="Codigo">
-                        </h1>
-                    </div>
-                    <div class="p-col-12 p-md-3" style="margin-top: 1%">
-                        <p-dropdown id="carrers" [options]="carrers" [(ngModel)]="carrer"></p-dropdown>
-                    </div>
-                    <div class="p-col-12 p-md-3" style="margin-top: 1%">
-                        <p-dropdown id="academic_periods" [options]="academic_periods" [(ngModel)]="academic_period"></p-dropdown>
+    <div class="ui-helper-clearfix">
+        <div class="p-grid">
+          
+                <div class="p-col-12">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label><b>Nombre del Curso</b></label>
+                            <input type="text" pInputText placeholder="Ingrese el nombre del curso" [(ngModel)]="curso.name">
+                        </div>
+                        <div class="p-field p-col">
+                            <label><b>Código del Curso</b></label>
+                            <input type="text" pInputText placeholder="Ingrese el código del curso" [(ngModel)]="curso.code">
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="carrer"><b>Carrera</b></label>
+                            <p-dropdown [options]="list_carrers" optionLabel="name" placeholder="Seleccione una Carrera" [(ngModel)]="carreraSeleccionada"></p-dropdown>
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="period"><b>Periódo del Curso</b></label>
+                            <p-dropdown [options]="list_academic_periods" optionLabel="name" placeholder="Seleccione un Periodo Académico" [(ngModel)]="periodoSeleccionado"></p-dropdown>
+                        </div>
                     </div>
                 </div>
+                <div class="p-col-12">
+                    <p-tabView>
+                        <p-tabPanel header="Datos Generales" leftIcon="pi pi-users">
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col-6">
+                                            <label for="name"><b>Nombre del Docente:</b></label>
+                                            <input type="text" pInputText [(ngModel)]="curso.user_name" disabled>
+                                        </div>
+                                        <div class="p-field p-col-3">
+                                            <label for="code"><b>Gratis</b></label><br>
+                                            <p-checkbox [(ngModel)]="value" [binary]="true"></p-checkbox>
+                                        </div>
+                                        <div class="p-field p-col-3">
+                                            <label for="cost"><b>Costo</b></label>
+                                            <input id="cost" type="text" pInputText placeholder="Ingrese el costo del curso" [(ngModel)]="curso.cost">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col">
+                                            <label for="period"><b>Tipo Curso</b></label>
+                                            <p-dropdown [options]="list_course_type" optionLabel="name"  placeholder="Ingrese el tipo de curso" [(ngModel)]="tipoCursoSeleccionado"></p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col">
+                                            <label for="code"><b>Modalidad</b></label>
+                                            <p-dropdown [options]="list_modality" optionLabel="name" placeholder="Ingrese la modalidad del curso" [(ngModel)]="modalidadSeleccionada"></p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col">
+                                            <label for="name"><b>Horas de Duración:</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese horas de duración" [(ngModel)]="curso.hours_duration">
+                                        </div>
+                                        <div class="p-field p-col">
+                                            <label for="carrer"><b>Cantidad de Participantes</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese numero de participantes" [(ngModel)]="curso.capacity">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col">
+                                            <label for="period"><b>Lugar / Lugares donde se impartirá el
+                                                    curso</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese el o los lugares donde se va a realizar el curso" [(ngModel)]="curso.place">
+                                        </div>
+                                        <div class="p-field p-col">
+                                            <label for="name"><b>Población del Curso:</b></label>
+                                            <p-dropdown [options]="list_participant_type" optionLabel="name" placeholder="A qué población va dirigido el curso?" [(ngModel)]="tipoParticipanteSeleccionado">
+                                            </p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col-12">
+                                            <label for="code"><b>Resumen del curso y posible proyecto</b></label><br>
+                                            <textarea [rows]="5" [cols]="30" pInputTextarea placeholder="Ingrese el resumen del curso y posible proyecto" [(ngModel)]="curso.resume"
+                                                autoResize="autoResize"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="carrer"><b>Necesidades</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText
+                                                    placeholder="Ingrese las necesidades de este curso."
+                                                    [(ngModel)]="necesidadText">
+                                                <button type="button" pButton pRipple label="Agregar Necesidad"
+                                                    (click)="add_necesidad($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="necesidades">
+                                                <ng-template pTemplate="caption">Listado de Necesidades</ng-template>
+                                                <ng-template pTemplate="body" let-necesidades>
+                                                    <tr>
+                                                        <td>{{necesidades}}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_necesidad(necesidades)"></button></td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Multimedia" leftIcon="pi pi-image">
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col-12">
+                                            <label for="period"><b>Imágen del Curso</b></label>
+                                            <p-fileUpload name="myfile[]" customUpload="true"
+                                                (uploadHandler)="myUploader($event)"></p-fileUpload>
+                                        </div>
+                                        <div *ngIf="imagenCurso != undefined" class="p-field p-col-12"
+                                            style="text-align: center !important;">
+                                            <img alt="curso" src="{{ imagenCurso }}" style="width: 50% !important;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Diseño Curricular" leftIcon="pi pi-calendar">
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col">
+                                            <label for="period"><b>Área</b></label>
+                                            <p-dropdown [options]="list_aerea" optionLabel="name" placeholder="Seleccione una Área" [(ngModel)]="areaSeleccionada"></p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col">
+                                            <label for="code"><b>Especialidad</b></label>
+                                            <p-dropdown [options]="list_specialty" optionLabel="name" placeholder="Seleccione una Especialidad" [(ngModel)]="especialidadSeleccionada"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="carrer"><b>Requisitos del Curso</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText
+                                                    placeholder="Ingrese los requisitos de este curso."
+                                                    [(ngModel)]="requisitoText">
+                                                <button type="button" pButton pRipple label="Agregar Requisito"
+                                                    (click)="add_requisito($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="requisitos">
+                                                <ng-template pTemplate="caption">Listado de Requisitos</ng-template>
+                                                <ng-template pTemplate="body" let-requisito>
+                                                    <tr>
+                                                        <td>{{requisito}}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_requisito(requisito)"></button></td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label><b>Temas Principales</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText
+                                                    placeholder="Ingrese los temas principales de este curso."
+                                                    [(ngModel)]="pricipalText">
+                                                <button type="button" pButton pRipple label="Agregar Tema Principal"
+                                                    (click)=" add_tema_principal($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="temasPrincipales">
+                                                <ng-template pTemplate="caption">Listado de Temas Principales
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-temaPrincipal>
+                                                    <tr>
+                                                        <td>{{temaPrincipal}}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_tema_principal(temaPrincipal)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="carrer"><b>Temas Secundarios</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText
+                                                    placeholder="Ingrese los temas secundarios de este curso."
+                                                    [(ngModel)]="secundaryText">
+                                                <button type="button" pButton pRipple label="Agregar Tema Secundario"
+                                                    (click)="add_tema_secundario($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="temasSecundarios">
+                                                <ng-template pTemplate="caption">Listado de Temas Secundarios
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-temaSecundario>
+                                                    <tr>
+                                                        <td>{{temaSecundario}}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_tema_secundario(temaSecundario)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="carrer"><b>Tema Transversal</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText
+                                                    placeholder="Ingrese los temas transversales de este curso."
+                                                    [(ngModel)]="transversalText">
+                                                <button type="button" pButton pRipple label="Agregar Tema Transversal"
+                                                    (click)="add_tema_transversal($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="temasTransversales">
+                                                <ng-template pTemplate="caption">Listado de Temas Transversales
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-temaTransversal>
+                                                    <tr>
+                                                        <td>{{ temaTransversal }}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_tema_transversal(temaTransversal)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Evaluación" leftIcon="pi pi-file">
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <h6><b>Evaluación Diagnóstica</b></h6>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-5">
+                                            <label for="name"><b>Técnica</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese loa técnica a realizarse."
+                                                [(ngModel)]="evaluacionDiagnostica.tecnica">
+                                        </div>
+                                        <div class="p-field p-col-5">
+                                            <label for="name"><b>Instrumento</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese el instrumento que va utilizar."
+                                                [(ngModel)]="evaluacionDiagnostica.instrumento">
+                                        </div>
+                                        <div class="p-field p-col-2" style="margin-top: 2%;">
+                                            <button type="button" pButton label="Agregar"
+                                                (click)="add_evaluacion_diagnostica($event)"></button>
+                                        </div>
+                                        <div class="p-field p-col-12">
+                                            <br>
+                                            <p-table [value]="evaluacionesDiagnosticas">
+                                                <ng-template pTemplate="caption">Listado de Evaluaciones Diagnósticas
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-evaluacionDiagnostica>
+                                                    <tr>
+                                                        <td>{{ evaluacionDiagnostica.tecnica }}</td>
+                                                        <td>{{ evaluacionDiagnostica.instrumento }}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_evaluacion_diagnostica(evaluacionDiagnostica)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                    <div class="p-col-12">
+                                        <h6><b>Evaluación Proceso Formativo</b></h6>
+                                    </div>
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-5">
+                                            <label for="name"><b>Técnica</b></label>
+                                            <input id="name" type="text" pInputText pInputText placeholder="Ingrese loa técnica a realizarse."
+                                            [(ngModel)]="evaluacionProceso.tecnica">
+                                        </div>
+                                        <div class="p-field p-col-5">
+                                            <label for="name"><b>Instrumento</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese el instrumento que va utilizar."
+                                                [(ngModel)]="evaluacionProceso.instrumento">
+                                        </div>
+                                        <div class="p-field p-col-2" style="margin-top: 2%;">
+                                            <button type="button" pButton label="Agregar"
+                                                (click)="add_proceso_formativo($event)"></button>
+                                        </div>
+                                        <div class="p-field p-col-12">
+                                            <br>
+                                            <p-table [value]="evaluacionesProcesos">
+                                                <ng-template pTemplate="caption">Listado de Evaluaciones Proceso
+                                                    Formativo
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-evaluacionProceso>
+                                                    <tr>
+                                                        <td>{{ evaluacionProceso.tecnica }}</td>
+                                                        <td>{{ evaluacionProceso.instrumento }}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_proceso_formativo(evaluacionProceso)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                    <div class="p-col-12">
+                                        <h6><b>Evaluación Final</b></h6>
+                                    </div>
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-5">
+                                            <label for="name"><b>Técnica</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese loa técnica a realizarse."
+                                            [(ngModel)]="evaluacionFinal.tecnica">
+                                        </div>
+                                        <div class="p-field p-col-5">
+                                            <label for="name"><b>Instrumento</b></label>
+                                            <input id="name" type="text" pInputText placeholder="Ingrese el instrumento que va utilizar."
+                                                [(ngModel)]="evaluacionFinal.instrumento">
+                                        </div>
+                                        <div class="p-field p-col-2" style="margin-top: 2%;">
+                                            <button type="button" pButton label="Agregar"
+                                                (click)="add_proceso_final($event)"></button>
+                                        </div>
+                                        <div class="p-field p-col-12">
+                                            <br>
+                                            <p-table [value]="evaluacionesFinales">
+                                                <ng-template pTemplate="caption">Listado de Evaluaciones Finales
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-evaluacionFinal>
+                                                    <tr>
+                                                        <td>{{ evaluacionFinal.tecnica }}</td>
+                                                        <td>{{ evaluacionFinal.instrumento }}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_proceso_final(evaluacionFinal)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Entorno de Aprendizaje" leftIcon="pi pi-briefcase">
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col-6">
+                                            <label for="period"><b>Horas Teóricas</b></label>
+                                            <input type="text" pInputText
+                                                placeholder="Ingrese la cantidad de horas teóricas." [(ngModel)]="curso.theory_hours">
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="code"><b>Horas Prácticas</b></label>
+                                            <input type="text" pInputText
+                                                placeholder="Ingrese la cantidad de horas prácticas." [(ngModel)]="curso.practice_hours">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col-12">
+                                            <label for="period"><b>Bibliografía</b></label>
+                                            <input type="text" pInputText placeholder="Ingrese la blibliografía." [(ngModel)]="curso.bibliographys">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="carrer"><b>Instalaciones</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText placeholder="Ingrese una instalación."
+                                                    [(ngModel)]="instalacionText">
+                                                <button type="button" pButton pRipple label="Agregar Instalación"
+                                                    (click)="add_instalacion($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="instalaciones">
+                                                <ng-template pTemplate="caption">Listado de Instalaciones</ng-template>
+                                                <ng-template pTemplate="body" let-instalacion>
+                                                    <tr>
+                                                        <td>{{ instalacion }}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_instalacion(instalacion)"></button></td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="carrer"><b>Fase Teórica</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText placeholder="llene el campo."
+                                                    [(ngModel)]="faseTeoricaText">
+                                                <button type="button" pButton pRipple label="Agregar Fase Teórica"
+                                                    (click)=" add_fase_teorica($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="fasesTeoricas">
+                                                <ng-template pTemplate="caption">Lista Fases Teóricas</ng-template>
+                                                <ng-template pTemplate="body" let-faseTeorica>
+                                                    <tr>
+                                                        <td>{{ faseTeorica }}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_fase_teorica(faseTeorica)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-col-12">
+                                            <p-messages [(value)]="msgs"></p-messages>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <label for="carrer"><b>Fase Práctica</b></label><br>
+                                            <div class="p-inputgroup">
+                                                <input type="text" pInputText placeholder="Llene el campo."
+                                                    [(ngModel)]="fasePracticaText">
+                                                <button type="button" pButton pRipple label="Agregar Fase Practica"
+                                                    (click)="add_fase_practica($event)"></button>
+                                            </div>
+                                        </div>
+                                        <div class="p-field p-col-6">
+                                            <br>
+                                            <p-table [value]="fasesPracticas">
+                                                <ng-template pTemplate="caption">Lista Fases Prácticas</ng-template>
+                                                <ng-template pTemplate="body" let-fasePractica>
+                                                    <tr>
+                                                        <td>{{ fasePractica }}</td>
+                                                        <td><button type="button" pButton label="Borrar"
+                                                                (click)="delete_fase_practica(fasePractica)"></button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Observaciones" leftIcon="pi pi-search">
+                            <div class="p-grid">
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col-12">
+                                            <label for="period"><b>Observaciones</b></label>
+                                            <textarea [rows]="10" pInputTextarea autoResize="autoResize" placeholder="Ingrese las observaciones del curso" [(ngModel)]="curso.observation"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="p-col-12">
+                                    <div class="p-fluid p-formgrid p-grid">
+                                        <div class="p-field p-col-4"></div>
+                                        <div class="p-field p-col-4">
+                                            <!-- <button pButton type="submit" label="Guardar Curso" icon="pi pi-save" iconPos="right" class="p-button-success"></button> -->
+                                            <button pButton type="button" label="Guardar Curso" icon="pi pi-save" iconPos="right" class="p-button-success" (click)="guardarCurso()" ></button>
+                                        </div>
+                                        <div class="p-field p-col-4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-tabPanel>
+                    </p-tabView>
+                </div>
+           
         </div>
-    <div>
-        <p-tabView>
-            <p-tabPanel header="Datos Generales" leftIcon="pi pi-paperclip">
-                <app-datos-curso></app-datos-curso>
-            </p-tabPanel>
-            <p-tabPanel header="Diseño Curricular" leftIcon="pi pi-paperclip">
-                <app-diseno-curricular></app-diseno-curricular>
-            </p-tabPanel>
-            <p-tabPanel header="Evaluacion" leftIcon="pi pi-paperclip">
-                <app-estrategias></app-estrategias>
-            </p-tabPanel>
-            <p-tabPanel header="Entorno de aprendizaje" leftIcon="pi pi-paperclip">
-                <app-entorno-aprendizaje></app-entorno-aprendizaje>
-            </p-tabPanel>
-            <p-tabPanel header="Observaciones" leftIcon="pi pi-paperclip">
-                <app-observaciones></app-observaciones>
-            </p-tabPanel>        
-        </p-tabView>    
     </div>
 </div>

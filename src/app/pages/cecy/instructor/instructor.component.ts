@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CecyService } from 'src/app/services/cecy/cecy.service';
 
 @Component({
   selector: 'app-instructor',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstructorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cecyService: CecyService) { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

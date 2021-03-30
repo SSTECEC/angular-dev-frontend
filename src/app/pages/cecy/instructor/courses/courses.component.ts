@@ -8,17 +8,25 @@ import { Curso } from 'src/app/models/cecy/curso';
 })
 export class CoursesComponent implements OnInit {
   url_list = "list";
-  courses:Curso[];
-  constructor(private cecyService:CecyService) { }
+  
+  lista_cursos : any = [];
+  
+  constructor(private cecyService: CecyService) { }
 
-  ngOnInit() {
-    this.getListCourse();
+  ngOnInit(): void {
+    this.cargarCursos();
   }
 
-  getListCourse(){
-    this.cecyService.getLis(this.url_list).subscribe(res=>{
-        this.courses = res;
+  public cargarCursos(){
+    this.cecyService.get("list", "").subscribe(
+      (res: any) => {
         console.log(res);
-    });
+        this.lista_cursos = res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
+
 }

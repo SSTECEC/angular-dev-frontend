@@ -14,7 +14,7 @@
             <input type="text" style="width: 78%;" pInputText placeholder="Nombre del Docente">
         </div>
         <div class="p-col-2 p-sm-4">
-            <p-checkbox name="group1" formControlName="free"  value="1" ></p-checkbox> <!--free-->
+            <p-checkbox name="group1" formControlName="free"  value="1" ></p-checkbox>
         </div>
         <div class="p-col-2 p-sm-4">
             <input  type="text" style="width: 69%;" formControlName="cost" pInputText placeholder="Costo">
@@ -31,7 +31,7 @@
         </div>      
         <div class="p-col-2 p-sm-4">
             <p-autoComplete formControlName="course_type" [suggestions]="course_types"
-                (completeMethod)="filter($event)" [size]="30" [minLength]="1" [dropdown]="true">
+                (completeMethod)="filter($event)" [size]="50" [minLength]="1" [dropdown]="true">
                 <ng-template let-course_type pTemplate="item" >
                     <div class="ui-helper-clearfix">
                         <div style="font-size:18px;margin:10px 10px 0 0">{{course_type}}</div>
@@ -42,14 +42,15 @@
         <div class="p-col-2 p-sm-4">
             <input type="text" style="width: 78%;" formControlName="duration" pInputText placeholder="Horas de duracion">
         </div>
+
         <div class="p-col-2 p-sm-4">
             <p-autoComplete formControlName="modality" [suggestions]="modalities"
-                (completeMethod)="filter($event)" [size]="30" [minLength]="1" [dropdown]="true">
-                <ng-template let-modality pTemplate="item" >
-                    <div class="ui-helper-clearfix">
-                        <div style="font-size:18px;margin:10px 10px 0 0">{{modality}}</div>
-                    </div>
-                </ng-template>
+             (completeMethod)="filter($event)" [size]="42" [minLength]="1" [dropdown]="true">
+             <ng-template let-modalities pTemplate="item" >
+                <div class="ui-helper-clearfix">
+                    <div style="font-size:18px;margin:10px 10px 0 0">{{modalities}}</div>
+                </div>
+            </ng-template>                
             </p-autoComplete>
         </div>      
 
@@ -72,7 +73,7 @@
         </div>  
         <div class="p-col-2 p-sm-4">
             <p-autoComplete formControlName="participant_type" [suggestions]="participant_types"
-            (completeMethod)="filter($event)" [size]="30" [minLength]="1" [dropdown]="true">
+            (completeMethod)="filter($event)" [size]="42" [minLength]="1" [dropdown]="true">
             <ng-template let-participant_type pTemplate="item" >
                 <div class="ui-helper-clearfix">
                     <div style="font-size:18px;margin:10px 10px 0 0">{{participant_type}}</div>
